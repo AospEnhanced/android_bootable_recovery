@@ -175,6 +175,12 @@ static bool ask_to_wipe_data(Device* device) {
   return (chosen_item == 1);
 }
 
+bool ask_to_ab_reboot(Device* device) {
+  device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
+  return yes_no(device, "To install additional packages, you need to reboot recovery first",
+                "Do you want to reboot to recovery now?");
+}
+
 static InstallResult prompt_and_wipe_data(Device* device) {
   // Reset to normal system boot so recovery won't cycle indefinitely.
   std::string err;
