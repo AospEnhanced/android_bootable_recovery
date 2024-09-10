@@ -731,7 +731,7 @@ Device::BuiltinAction start_recovery(Device* device, const std::vector<std::stri
   std::vector<std::string> title_lines =
       android::base::Split(android::base::GetProperty("ro.build.fingerprint", ""), ":");
   title_lines.insert(std::begin(title_lines), "AospEnhanced Recovery");
-  
+  title_lines.push_back("Product name - " + android::base::GetProperty("ro.product.device", ""));
   if (android::base::GetBoolProperty("ro.build.ab_update", false)) {
     std::string slot = android::base::GetProperty("ro.boot.slot_suffix", "");
     if (android::base::StartsWith(slot, "_")) slot.erase(0, 1);
